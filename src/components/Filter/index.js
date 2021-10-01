@@ -1,14 +1,6 @@
 import Profile from '../Profile/index'
 
-import {
-  FilterContainer,
-  LineElement,
-  CheckboxContainer,
-  Checkbox,
-  LabelElement,
-  CardContainer,
-  FilterHeading,
-} from './styledComponents'
+import './index.css'
 
 const Filter = props => {
   const {
@@ -27,28 +19,32 @@ const Filter = props => {
     }
 
     return (
-      <CardContainer key={eachRadio.label}>
-        <Checkbox
+      <div className="card-container" key={eachRadio.label}>
+        <input
           type="radio"
           name="salary"
           id={`salary-${eachRadio.salaryRangeId}`}
           value={eachRadio.salaryRangeId}
           checked={isOptionSelected}
           onChange={onchangeRadio}
+          className="checkbox"
         />
-        <LabelElement htmlFor={`salary-${eachRadio.salaryRangeId}`}>
+        <label
+          className="label-element"
+          htmlFor={`salary-${eachRadio.salaryRangeId}`}
+        >
           {eachRadio.label}
-        </LabelElement>
+        </label>
         <br />
-      </CardContainer>
+      </div>
     )
   }
 
   const renderSalary = () => (
-    <CheckboxContainer>
-      <FilterHeading>Salary Range</FilterHeading>
+    <div className="checkbox-container">
+      <h1 className="filter-heading">Salary Range</h1>
       {salaryRange.map(eachRadio => getRadioElement(eachRadio))}
-    </CheckboxContainer>
+    </div>
   )
 
   const getCheckbox = eachCheck => {
@@ -60,34 +56,37 @@ const Filter = props => {
       : null
 
     return (
-      <CardContainer key={eachCheck.label}>
-        <Checkbox
+      <div className="card-container" key={eachCheck.label}>
+        <input
           type="checkbox"
           id={eachCheck.label}
           onChange={onchangeEmployee}
           checked={isChecked}
+          className="checkbox"
         />
-        <LabelElement htmlFor={eachCheck.label}>{eachCheck.label}</LabelElement>
+        <label className="label-element" htmlFor={eachCheck.label}>
+          {eachCheck.label}
+        </label>
         <br />
-      </CardContainer>
+      </div>
     )
   }
 
   const renderEmployee = () => (
-    <CheckboxContainer>
-      <FilterHeading>Type of Employment</FilterHeading>
+    <div className="checkbox-container">
+      <h1 className="filter-heading">Type of Employment</h1>
       {employmentType.map(eachCheck => getCheckbox(eachCheck))}
-    </CheckboxContainer>
+    </div>
   )
 
   return (
-    <FilterContainer>
+    <div className="filter-container">
       <Profile />
-      <LineElement />
+      <hr className="line-element" />
       {renderEmployee()}
-      <LineElement />
+      <hr className="line-element" />
       {renderSalary()}
-    </FilterContainer>
+    </div>
   )
 }
 

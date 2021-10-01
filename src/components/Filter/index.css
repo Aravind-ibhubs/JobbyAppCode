@@ -1,0 +1,56 @@
+.filter-container {
+  background-color: transparent;
+  min-height: 50vh;
+}
+
+.line-element {
+  border: 1px solid #f8fafc;
+}
+
+@media (min-width: 768px) {
+  .line-element {
+    width: 200px;
+    margin-right: auto;
+  }
+  .filter-container {
+    height: 75vh;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+}
+
+.checkbox-container {
+  background-color: transparent;
+  min-height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.checkbox {
+  height: 20px;
+  width: 20px;
+  margin: 10px;
+  background-color: #4f46e5;
+}
+
+.label-element {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 13px;
+}
+
+.card-container {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+}
+
+.filter-heading {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 15px;
+}

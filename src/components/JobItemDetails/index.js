@@ -1,4 +1,5 @@
 import {Component} from 'react'
+
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 
@@ -6,27 +7,7 @@ import {BsFillStarFill, BsBriefcaseFill} from 'react-icons/bs'
 import {MdLocationOn} from 'react-icons/md'
 import {FiExternalLink} from 'react-icons/fi'
 
-import {
-  LoaderContainer,
-  JobDetailsContainer,
-  JobDetails,
-  CompanyLogoContainer,
-  CompanyLogo,
-  TitleContainer,
-  JobTitle,
-  LocationContainer,
-  LocationTypeContainer,
-  TopParagraph,
-  HorizontalLine,
-  AnchorElement,
-  SkillsContainer,
-  SkillsCard,
-  SkillImage,
-  LifeImage,
-  LifeDescription,
-  SimilarHeading,
-  SimilarContainer,
-} from './styledComponents'
+import './index.css'
 
 import FailureView from '../FailureView/index'
 import Navbar from '../Navbar/index'
@@ -124,65 +105,79 @@ class JobItemDetails extends Component {
     } = jobDetails
 
     return (
-      <JobDetailsContainer>
-        <JobDetails>
-          <CompanyLogoContainer>
-            <CompanyLogo src={companyLogoUrl} alt={title} />
-            <TitleContainer>
-              <JobTitle>{title}</JobTitle>
-              <JobTitle>
+      <div className="job-item-job-details-container">
+        <div className="job-item-job-details">
+          <div className="job-item-company-logo-container">
+            <img
+              src={companyLogoUrl}
+              alt={title}
+              className="job-item-company-logo"
+            />
+            <div className="job-item-title-container">
+              <h1 className="job-item-job-title">{title}</h1>
+              <h1 className="job-item-job-title">
                 <BsFillStarFill color="#fbbf24" /> {rating}
-              </JobTitle>
-            </TitleContainer>
-          </CompanyLogoContainer>
-          <LocationContainer>
-            <LocationTypeContainer>
-              <TopParagraph>
+              </h1>
+            </div>
+          </div>
+          <div className="job-item-location-container">
+            <div className="job-item-location-type-container">
+              <p className="job-item-top-paragraph">
                 <MdLocationOn color="#ffffff" /> {location}
-              </TopParagraph>
-              <TopParagraph>
+              </p>
+              <p className="job-item-top-paragraph">
                 <BsBriefcaseFill color="#ffffff" /> {employmentType}
-              </TopParagraph>
-            </LocationTypeContainer>
-            <TopParagraph>{packagePerAnnum}</TopParagraph>
-          </LocationContainer>
-          <HorizontalLine />
-          <LocationContainer>
-            <JobTitle>Description</JobTitle>
-            <AnchorElement href={companyWebsiteUrl}>
+              </p>
+            </div>
+            <p className="job-item-top-paragraph">{packagePerAnnum}</p>
+          </div>
+          <hr className="job-item-horizontal-line" />
+          <div className="job-item-location-container">
+            <h1 className="job-item-job-title">Description</h1>
+            <a className="job-item-anchor-element" href={companyWebsiteUrl}>
               Visit <FiExternalLink />
-            </AnchorElement>
-          </LocationContainer>
-          <TopParagraph>{jobDescription}</TopParagraph>
-          <JobTitle>Skills</JobTitle>
-          <SkillsContainer>
+            </a>
+          </div>
+          <p className="job-item-top-paragraph">{jobDescription}</p>
+          <h1 className="job-item-job-title">Skills</h1>
+          <ul className="job-item-skills-container">
             {skills.map(eachSkills => (
-              <SkillsCard>
-                <SkillImage src={eachSkills.imageUrl} alt={eachSkills.name} />
-                <TopParagraph>{eachSkills.name}</TopParagraph>
-              </SkillsCard>
+              <li className="job-item-skills-card">
+                <img
+                  src={eachSkills.imageUrl}
+                  alt={eachSkills.name}
+                  className="job-item-skill-image"
+                />
+                <p className="job-item-top-paragraph">{eachSkills.name}</p>
+              </li>
             ))}
-          </SkillsContainer>
-          <JobTitle>Life at Company</JobTitle>
-          <LocationContainer>
-            <LifeDescription>{lifeAtCompany.description}</LifeDescription>
-            <LifeImage src={lifeAtCompany.imageUrl} />
-          </LocationContainer>
-        </JobDetails>
-        <SimilarHeading>Similar Jobs</SimilarHeading>
-        <SimilarContainer>
+          </ul>
+          <h1 className="job-item-job-title">Life at Company</h1>
+          <div className="job-item-location-container">
+            <p className="job-item-life-description">
+              {lifeAtCompany.description}
+            </p>
+            <img
+              src={lifeAtCompany.imageUrl}
+              alt="life at company"
+              className="job-item-life-image"
+            />
+          </div>
+        </div>
+        <h1 className="job-item-similar-heading">Similar Jobs</h1>
+        <ul className="job-item-similar-container">
           {similarJobs.map(eachJob => (
             <RelatedJobCard jobCardDetails={eachJob} key={eachJob.id} />
           ))}
-        </SimilarContainer>
-      </JobDetailsContainer>
+        </ul>
+      </div>
     )
   }
 
   renderItemLoading = () => (
-    <LoaderContainer testid="loader">
-      <Loader type="MutatingDots" color="#ffffff" height="50" width="50" />
-    </LoaderContainer>
+    <div className="job-item-loader-container" testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
   )
 
   getRenderView = () => {

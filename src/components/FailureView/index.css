@@ -1,0 +1,39 @@
+.failure-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+}
+
+.failure-text-container {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.failure-image {
+  height: 25vh;
+  width: 25vw;
+}
+
+.failure-heading {
+  color: #ffffff;
+  font-family: 'Roboto';
+}
+
+.failure-paragraph {
+  color: #f8fafc;
+  font-family: 'Roboto';
+}
+
+.failure-retry-button {
+  background-color: #4f46e5;
+  color: #ffffff;
+  border-radius: 15px;
+  padding: 15px;
+  font-family: 'Roboto';
+}

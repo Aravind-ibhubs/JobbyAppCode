@@ -1,15 +1,7 @@
 import {BsFillStarFill, BsBriefcaseFill} from 'react-icons/bs'
 import {MdLocationOn} from 'react-icons/md'
 
-import {
-  CardContainers,
-  CardTopContainer,
-  CardImage,
-  TitleContainer,
-  TopHeading,
-  Description,
-  BottomContainer,
-} from './styledComponents'
+import './index.css'
 
 const RelatedJobCard = props => {
   const {jobCardDetails} = props
@@ -24,27 +16,27 @@ const RelatedJobCard = props => {
   } = jobCardDetails
 
   return (
-    <CardContainers>
-      <CardTopContainer>
-        <CardImage src={companyLogoUrl} alt={id} />
-        <TitleContainer>
-          <TopHeading>{title}</TopHeading>
-          <TopHeading>
+    <li className="related-card-containers">
+      <div className="related-card-top-container">
+        <img src={companyLogoUrl} alt={id} className="related-card-image" />
+        <div className="related-title-container">
+          <h1 className="related-top-heading">{title}</h1>
+          <h1 className="related-top-heading">
             <BsFillStarFill color="#fbbf24" /> {rating}
-          </TopHeading>
-        </TitleContainer>
-      </CardTopContainer>
-      <TopHeading>Description</TopHeading>
-      <Description>{jobDescription}</Description>
-      <BottomContainer>
-        <Description>
+          </h1>
+        </div>
+      </div>
+      <h1 className="related-top-heading">Description</h1>
+      <p className="related-description">{jobDescription}</p>
+      <div className="related-bottom-container">
+        <p className="related-description">
           <MdLocationOn color="#ffffff" /> {location}
-        </Description>
-        <Description>
+        </p>
+        <p className="related-description">
           <BsBriefcaseFill color="#ffffff" /> {employmentType}
-        </Description>
-      </BottomContainer>
-    </CardContainers>
+        </p>
+      </div>
+    </li>
   )
 }
 

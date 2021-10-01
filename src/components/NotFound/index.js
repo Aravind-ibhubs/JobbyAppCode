@@ -1,28 +1,23 @@
 import Navbar from '../Navbar/index'
 
-import {
-  MainContainer,
-  TextContainer,
-  NotFoundImage,
-  NotHeading,
-  NotParagraph,
-} from './styledComponents'
+import './index.css'
 
 const NotFound = () => (
   <>
     <Navbar />
-    <MainContainer>
-      <TextContainer>
-        <NotFoundImage
+    <div className="main-container">
+      <div className="text-container">
+        <img
           src="https://assets.ccbp.in/frontend/react-js/jobby-app-not-found-img.png"
           alt="not found"
+          className="not-foundImage"
         />
-        <NotHeading>Page Not Found</NotHeading>
-        <NotParagraph>
+        <h1 className="not-heading">Page Not Found</h1>
+        <p className="not-paragraph">
           we&#180;re sorry,the page you requested could not be found
-        </NotParagraph>
-      </TextContainer>
-    </MainContainer>
+        </p>
+      </div>
+    </div>
   </>
 )
 

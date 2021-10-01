@@ -2,14 +2,7 @@ import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 
-import {
-  ProfileAvatar,
-  ProfileName,
-  ProfileDescription,
-  LoaderContainer,
-  RefreshButton,
-  ProfileContainer,
-} from './styledComponents'
+import './index.css'
 
 const profileStatus = {
   initial: 'INITIAL',
@@ -58,28 +51,36 @@ class Profile extends Component {
   }
 
   renderProfileLoader = () => (
-    <LoaderContainer>
-      <Loader type="Circles" color={50} />
-    </LoaderContainer>
+    <div className="profile-loader-container" testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
   )
 
   renderProfileSuccess = () => {
     const {profileDetails} = this.state
     return (
-      <ProfileContainer>
-        <ProfileAvatar src={profileDetails.profileImageUrl} />
-        <ProfileName>{profileDetails.name}</ProfileName>
-        <ProfileDescription>{profileDetails.shortBio}</ProfileDescription>
-      </ProfileContainer>
+      <div className="profile-container">
+        <img
+          src={profileDetails.profileImageUrl}
+          alt="profile avatar"
+          className="profile-avatar"
+        />
+        <h1 className="profile-name">{profileDetails.name}</h1>
+        <p className="profile-description">{profileDetails.shortBio}</p>
+      </div>
     )
   }
 
   renderProfileFailure = () => (
-    <LoaderContainer>
-      <RefreshButton type="button" onClick={this.onclickRefresh}>
+    <div className="profile-loader-container">
+      <button
+        type="button"
+        onClick={this.onclickRefresh}
+        className="profile-refresh-button"
+      >
         Retry
-      </RefreshButton>
-    </LoaderContainer>
+      </button>
+    </div>
   )
 
   renderProfile = () => {

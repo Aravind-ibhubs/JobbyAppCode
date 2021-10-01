@@ -3,17 +3,7 @@ import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 
-import {
-  MainApp,
-  LoginContainer,
-  LoginLogo,
-  LabelElement,
-  InputElement,
-  Button,
-  LoaderContainer,
-  ErrorMessage,
-  InputContainer,
-} from './styledComponents'
+import './index.css'
 
 class Login extends Component {
   state = {username: '', password: '', isLoading: false, errMsg: ''}
@@ -61,41 +51,50 @@ class Login extends Component {
     const {username, password, errMsg} = this.state
 
     return (
-      <LoginContainer onSubmit={this.onClickSubmit}>
-        <LoginLogo
+      <form onSubmit={this.onClickSubmit} className="login-container">
+        <img
           src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
           alt="website logo"
+          className="login-logo"
         />
-        <InputContainer>
-          <LabelElement htmlFor="username">USERNAME</LabelElement>
-          <InputElement
+        <div className="login-input-container">
+          <label className="login-label-element" htmlFor="username">
+            USERNAME
+          </label>
+          <input
             type="text"
             id="username"
             placeholder="Username"
             onChange={this.changeUsername}
             value={username}
+            className="login-input-element"
           />
-        </InputContainer>
-        <InputContainer>
-          <LabelElement htmlFor="password">PASSWORD</LabelElement>
-          <InputElement
+        </div>
+        <div className="login-input-container">
+          <label className="login-label-element" htmlFor="password">
+            PASSWORD
+          </label>
+          <input
             type="password"
             id="password"
             placeholder="Password"
             onChange={this.changePassword}
             value={password}
+            className="login-input-element"
           />
-        </InputContainer>
-        <Button type="submit">Login</Button>
-        <ErrorMessage>{errMsg}</ErrorMessage>
-      </LoginContainer>
+        </div>
+        <button className="login-button" type="submit">
+          Login
+        </button>
+        <p className="login-error-message">{errMsg}</p>
+      </form>
     )
   }
 
   renderLoader = () => (
-    <LoaderContainer testid="loader">
+    <div className="login-loader-container" testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
-    </LoaderContainer>
+    </div>
   )
 
   render() {
@@ -105,7 +104,9 @@ class Login extends Component {
       return <Redirect to="/" />
     }
     return (
-      <MainApp>{isLoading ? this.renderLoader() : this.renderLogin()}</MainApp>
+      <div className="login-main-app">
+        {isLoading ? this.renderLoader() : this.renderLogin()}
+      </div>
     )
   }
 }

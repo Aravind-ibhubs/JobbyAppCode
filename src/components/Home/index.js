@@ -2,29 +2,25 @@ import {Link} from 'react-router-dom'
 
 import Navbar from '../Navbar/index'
 
-import {
-  HomeContainer,
-  TextContainer,
-  HomeHeading,
-  JobsButton,
-  HomeDescription,
-} from './styledComponents'
+import './index.css'
 
 const Home = () => (
   <>
     <Navbar />
-    <HomeContainer>
-      <TextContainer>
-        <HomeHeading>Find The Job That Fits Your Life</HomeHeading>
-        <HomeDescription>
+    <div className="home-container">
+      <div className="text-container">
+        <h1 className="home-heading">Find The Job That Fits Your Life</h1>
+        <p className="home-description">
           Millions of people searching for jobs,salary information,company
           reviews. Find the job that fits your abilities and potential.
-        </HomeDescription>
+        </p>
         <Link to="/jobs">
-          <JobsButton type="button">Find Jobs</JobsButton>
+          <button className="jobs-button" type="button">
+            Find Jobs
+          </button>
         </Link>
-      </TextContainer>
-    </HomeContainer>
+      </div>
+    </div>
   </>
 )
 

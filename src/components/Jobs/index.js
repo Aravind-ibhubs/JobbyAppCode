@@ -9,20 +9,7 @@ import Filter from '../Filter/index'
 import FailureView from '../FailureView/index'
 import JobCard from '../JobCard/index'
 
-import {
-  JobsContainer,
-  JobsSearchContainerSm,
-  SearchInput,
-  SearchIcon,
-  JobBottomContainer,
-  JobsSearchContainerLg,
-  JobsContainerLoader,
-  SuccessContainer,
-  NoJobImage,
-  ParagraphText,
-  JobHeading,
-  NoJobsContainer,
-} from './styledComponents'
+import './index.css'
 
 const employmentTypesList = [
   {
@@ -156,29 +143,30 @@ class Jobs extends Component {
     const isJobsEmpty = jobDetails.length === 0
 
     return isJobsEmpty === true ? (
-      <NoJobsContainer>
-        <NoJobImage
+      <div className="job-route-no-jobs-container">
+        <img
           src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
           alt="no jobs"
+          className="job-route-no-job-image"
         />
-        <JobHeading>No Jobs Found</JobHeading>
-        <ParagraphText>
+        <h1 className="job-route-job-heading">No Jobs Found</h1>
+        <p className="job-route-paragraph-text">
           We could not find any jobs.Try other filters.
-        </ParagraphText>
-      </NoJobsContainer>
+        </p>
+      </div>
     ) : (
-      <SuccessContainer>
+      <div className="job-route-success-container">
         {jobDetails.map(eachJob => (
           <JobCard detailsCard={eachJob} key={eachJob.id} />
         ))}
-      </SuccessContainer>
+      </div>
     )
   }
 
   jobsLoading = () => (
-    <JobsContainerLoader>
-      <Loader type="BallTriangle" color="#f8fafc" height={50} width={80} />
-    </JobsContainerLoader>
+    <div className="job-route-jobs-container-loader" testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
   )
 
   getRenderJobs = () => {
@@ -202,18 +190,24 @@ class Jobs extends Component {
     return (
       <>
         <Navbar />
-        <JobsContainer>
-          <JobsSearchContainerSm>
-            <SearchInput
+        <div className="job-route-jobs-container">
+          <div className="job-route-jobs-search-container-sm">
+            <input
               type="text"
               onChange={this.changeSearch}
               placeholder="Search"
+              className="job-route-search-input"
             />
-            <SearchIcon onClick={this.onclickSearch}>
+            <button
+              type="button"
+              onClick={this.onclickSearch}
+              testid="searchButton"
+              className="job-route-search-icon"
+            >
               <BsSearch color="#f1f5f9" />
-            </SearchIcon>
-          </JobsSearchContainerSm>
-          <JobBottomContainer>
+            </button>
+          </div>
+          <div className="job-route-job-bottom-container">
             <Filter
               employmentType={employmentTypesList}
               salaryRange={salaryRangesList}
@@ -222,21 +216,27 @@ class Jobs extends Component {
               activeEmployee={activeType}
               activeSalary={activeSalary}
             />
-            <SuccessContainer>
-              <JobsSearchContainerLg>
-                <SearchInput
+            <div className="job-route-success-container">
+              <div className="job-route-jobs-search-container-lg">
+                <input
                   type="text"
                   onChange={this.changeSearch}
                   placeholder="Search"
+                  className="job-route-search-input"
                 />
-                <SearchIcon onClick={this.onclickSearch}>
+                <button
+                  onClick={this.onclickSearch}
+                  type="button"
+                  testid="searchButton"
+                  className="job-route-search-icon"
+                >
                   <BsSearch color="#f1f5f9" />
-                </SearchIcon>
-              </JobsSearchContainerLg>
+                </button>
+              </div>
               {this.getRenderJobs()}
-            </SuccessContainer>
-          </JobBottomContainer>
-        </JobsContainer>
+            </div>
+          </div>
+        </div>
       </>
     )
   }
